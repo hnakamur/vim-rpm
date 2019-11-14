@@ -1,4 +1,4 @@
-%define patchlevel 003
+%define patchlevel 2300
 %if %{?WITH_SELINUX:0}%{!?WITH_SELINUX:1}
 %define WITH_SELINUX 1
 %endif
@@ -14,8 +14,8 @@
 %define withruby 1
 %define withlua 1
 
-%define baseversion 8.0
-%define vimdir vim80
+%define baseversion 8.1
+%define vimdir vim81
 
 Summary: The VIM editor
 URL:     http://www.vim.org/
@@ -24,7 +24,7 @@ Version: %{baseversion}.%{patchlevel}
 Release: 1%{?dist}
 License: Vim
 Group: Applications/Editors
-Source0: ftp://ftp.vim.org/pub/vim/unix/vim-%{baseversion}-%{patchlevel}.tar.bz2
+Source0: https://github.com/vim/vim/archive/v%{baseversion}.%{patchlevel}.tar.gz#/vim-%{baseversion}.%{patchlevel}.tar.gz
 Source1: vim.sh
 Source2: vim.csh
 Source3: gvim.desktop
@@ -57,11 +57,11 @@ Patch3002: vim-7.4-nowarnings.patch
 Patch3004: vim-7.0-rclocation.patch
 Patch3006: vim-7.4-checkhl.patch
 Patch3007: vim-7.4-fstabsyntax.patch
-Patch3008: vim-7.4-syncolor.patch
+Patch3008: vim-8.1-syncolor.patch
 Patch3009: vim-7.0-specedit.patch
 Patch3010: vim-7.3-manpage-typo-668894-675480.patch
 Patch3011: vim-manpagefixes-948566.patch
-Patch3012: vim-7.4-licensemacro-1151450.patch
+Patch3012: vim-8.1-licensemacro.patch
 Patch3013: vim-7.4-globalsyntax.patch
 Patch3014: vim-7.4-releasestring-1318991.patch
 
@@ -190,7 +190,7 @@ with graphics and mouse capabilities.  You'll also need to install the
 vim-common package.
 
 %prep
-%setup -q -b 0 -n %{vimdir}
+%setup -q -b 0 -n vim-%{baseversion}.%{patchlevel}
 # fix rogue dependencies from sample code
 chmod -x runtime/tools/mve.awk
 %patch2002 -p1
@@ -563,6 +563,7 @@ rm -rf %{buildroot}
 %lang(ca) %{_datadir}/%{name}/%{vimdir}/lang/ca
 %lang(cs) %{_datadir}/%{name}/%{vimdir}/lang/cs
 %lang(cs.cp1250) %{_datadir}/%{name}/%{vimdir}/lang/cs.cp1250
+%lang(da) %{_datadir}/%{name}/%{vimdir}/lang/da
 %lang(de) %{_datadir}/%{name}/%{vimdir}/lang/de
 %lang(en_GB) %{_datadir}/%{name}/%{vimdir}/lang/en_GB
 %lang(eo) %{_datadir}/%{name}/%{vimdir}/lang/eo
@@ -576,6 +577,7 @@ rm -rf %{buildroot}
 %lang(ja.sjis) %{_datadir}/%{name}/%{vimdir}/lang/ja.sjis
 %lang(ko) %{_datadir}/%{name}/%{vimdir}/lang/ko
 %lang(ko) %{_datadir}/%{name}/%{vimdir}/lang/ko.UTF-8
+%lang(lv) %{_datadir}/%{name}/%{vimdir}/lang/lv
 %lang(nb) %{_datadir}/%{name}/%{vimdir}/lang/nb
 %lang(nl) %{_datadir}/%{name}/%{vimdir}/lang/nl
 %lang(no) %{_datadir}/%{name}/%{vimdir}/lang/no
@@ -587,7 +589,9 @@ rm -rf %{buildroot}
 %lang(ru.cp1251) %{_datadir}/%{name}/%{vimdir}/lang/ru.cp1251
 %lang(sk) %{_datadir}/%{name}/%{vimdir}/lang/sk
 %lang(sk.cp1250) %{_datadir}/%{name}/%{vimdir}/lang/sk.cp1250
+%lang(sr) %{_datadir}/%{name}/%{vimdir}/lang/sr
 %lang(sv) %{_datadir}/%{name}/%{vimdir}/lang/sv
+%lang(tr) %{_datadir}/%{name}/%{vimdir}/lang/tr
 %lang(uk) %{_datadir}/%{name}/%{vimdir}/lang/uk
 %lang(uk.cp1251) %{_datadir}/%{name}/%{vimdir}/lang/uk.cp1251
 %lang(vi) %{_datadir}/%{name}/%{vimdir}/lang/vi
@@ -612,6 +616,12 @@ rm -rf %{buildroot}
 %{_mandir}/man1/vimx.*
 %{_mandir}/man1/xxd.*
 %{_mandir}/man5/vimrc.*
+%lang(da) %{_mandir}/da.ISO8859-1/man1/*
+%lang(da) %{_mandir}/da.UTF-8/man1/*
+%lang(da) %{_mandir}/da/man1/*
+%lang(de) %{_mandir}/de.ISO8859-1/man1/*
+%lang(de) %{_mandir}/de.UTF-8/man1/*
+%lang(de) %{_mandir}/de/man1/*
 %lang(fr) %{_mandir}/fr/man1/*
 %lang(it) %{_mandir}/it/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
@@ -743,6 +753,9 @@ rm -rf %{buildroot}
 %{_datadir}/icons/locolor/*/apps/*
 
 %changelog
+* Thu Nov 14 2019 Hiroaki Nakamura <hnakamur@gmail.com> - 8.1.2300-1
+- 8.1 patchlevel 2300
+
 * Sun Sep 18 2016 Bryan Seitz <seitz@ghettoforge.org> - 8.0.003-1
 - Imported into Ghettoforge
 - Remove Python3 support

@@ -1,0 +1,24 @@
+--- vim-8.1.2300/src/highlight.c.syncolor	2019-11-14 06:35:19.000000000 +0900
++++ vim-8.1.2300/src/highlight.c	2019-11-14 12:06:07.786484141 +0900
+@@ -208,8 +208,8 @@
+     CENT("Visual term=reverse",
+ 	 "Visual term=reverse guibg=LightGrey"),
+ #ifdef FEAT_DIFF
+-    CENT("DiffAdd term=bold ctermbg=LightBlue",
+-	 "DiffAdd term=bold ctermbg=LightBlue guibg=LightBlue"),
++    CENT("DiffAdd term=bold ctermbg=LightRed",
++	 "DiffAdd term=bold ctermbg=LightRed guibg=LightBlue"),
+     CENT("DiffChange term=bold ctermbg=LightMagenta",
+ 	 "DiffChange term=bold ctermbg=LightMagenta guibg=LightMagenta"),
+     CENT("DiffDelete term=bold ctermfg=Blue ctermbg=LightCyan",
+@@ -299,8 +299,8 @@
+     CENT("Visual term=reverse",
+ 	 "Visual term=reverse guibg=DarkGrey"),
+ #ifdef FEAT_DIFF
+-    CENT("DiffAdd term=bold ctermbg=DarkBlue",
+-	 "DiffAdd term=bold ctermbg=DarkBlue guibg=DarkBlue"),
++    CENT("DiffAdd term=bold ctermbg=DarkRed",
++	 "DiffAdd term=bold ctermbg=DarkRed guibg=DarkBlue"),
+     CENT("DiffChange term=bold ctermbg=DarkMagenta",
+ 	 "DiffChange term=bold ctermbg=DarkMagenta guibg=DarkMagenta"),
+     CENT("DiffDelete term=bold ctermfg=Blue ctermbg=DarkCyan",
